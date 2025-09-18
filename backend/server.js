@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import lessonsRoutes from "./routes/lessons.js";
-import error from "./routes/error.js";
+import insertlessons from "./routes/route_inslessons.js";
 import dotenv from "dotenv";
 
 // this is to setup the env
@@ -24,7 +24,7 @@ app.use(express.json());
 
 // Mount routes
 app.use("/api/lessons", lessonsRoutes);
-app.use("/api/errors", error);
+app.use("/api/insertlessons", insertlessons);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
