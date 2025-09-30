@@ -9,7 +9,11 @@ import rateLimit from "express-rate-limit";
 // this is to setup the env
 dotenv.config();
 const app = express();
+<<<<<<< HEAD
 const PORT = process.env.BACKEND_PORT || 3000;
+=======
+const PORT = process.env.BACKEND_PORT;
+>>>>>>> ff0b0f9 (added delete to complete the crud)
 
 // CORS or cross origin resource sharing
 // allows you to request from another port
