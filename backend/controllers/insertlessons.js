@@ -1,17 +1,5 @@
 import pool from "../config/db.js";
 
-export const getLessons = async (req, res) => {
-  // this is just to select the data from the database
-  // and show it towards the frontend
-  try {
-    const [rows] = await pool.query("SELECT * FROM lessons");
-    res.status(200).json(rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Error fetching lessons" });
-  }
-};
-
 export const insertlessons = async (req, res) => {
   try {
     // Destructure values coming from the request body (JSON sent by the client)
@@ -74,37 +62,5 @@ export const insertlessons = async (req, res) => {
     // Then we send a 500 Internal Server Error response
     // with the error message to help the client understand what failed
     res.status(500).json({ msg: err.message });
-  }
-};
-
-export const updateLessons = async (req, res) => {
-  try {
-    const id = Number(req.params.id);
-    const { title, language, content } = req.body;
-
-    if (isNaN(id)) {
-      return res.status(400).json({ message: "invalid number " });
-    }
-
-    if (
-      typeof title !== "string" ||
-      typeof language !== "string" ||
-      typeof content !== "string"
-    ) {
-      return res.status(400).json({ message: "invalid" });
-    }
-
-    const [result] = await pool.query(
-      "UPDATE lessons SET title = ?, language = ?, content = ? WHERE id = ? ",
-      [title, language, content, id]
-    );
-
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ msg: "not found" });
-    }
-
-    res.status(200).json({ message: "updated" });
-  } catch (err) {
-    res.status(500).json(err.message);
   }
 };
