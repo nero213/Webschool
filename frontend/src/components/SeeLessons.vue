@@ -8,12 +8,11 @@ defineOptions({
 })
 
 const lessons = ref([])
-const lessons_api = 'http://localhost:3000/api/lessons' // <-- make sure this exists
 
 onMounted(async () => {
   try {
     const res = await getLessons()
-    lessons.value = res.data;
+    lessons.value = res.data
   } catch (err) {
     console.error('There is a problem with the backend API', err)
   }
@@ -24,9 +23,7 @@ onMounted(async () => {
   <div>
     <h1>Lessons</h1>
     <ul>
-      <li v-for="lesson in lessons" :key="lesson.id">
-        {{ lesson.title }}
-      </li>
+      <li v-for="lesson in lessons" :key="lesson.id">{{ lesson.title }} {{ lesson.language }}</li>
     </ul>
   </div>
 </template>
