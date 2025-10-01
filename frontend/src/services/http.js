@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 const http = axios.create({
-  baseURL: 'http://localhost:3000/api/lessons',
+  baseURL: 'http://localhost:3000/api',
   headers: {
-    'Content-Type': 'applicaiton/json',
+    'Content-Type': 'application/json',
   },
 })
 
-export default axios;
+export default http;
