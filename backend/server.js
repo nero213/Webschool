@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import lessonsRoutes from "./routes/lessons.js";
-import insertlessons from "./routes/route_inslessons.js";
 import dotenv from "dotenv";
+import rateLimit from "express-rate-limit";
 
 // this is to setup the env
 dotenv.config();
@@ -20,11 +20,19 @@ app.use(
   })
 );
 
+// this allows the use of the req.body to enable to send data in a json format
 app.use(express.json());
 
+const limiter = rateLimit({
+  windowMs: 5 * 60 * 1000, // this mean 15 minutes
+  max: 5,
+  message: { msg: "Too many requests, please try again later." },
+  standardHeaders: true,
+  legacyHeaders: true
+});
+
 // Mount routes
-app.use("/api/lessons", lessonsRoutes);
-app.use("/api/insertlessons", insertlessons);
+app.use("/api/lessons", limiter, lessonsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
