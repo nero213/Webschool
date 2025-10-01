@@ -74,13 +74,9 @@ const toggleSidenav = () => {
   justify-content: space-between;
   padding: 1vh 20px;
 
-  /* Glassmorphism effect */
-  background-color: rgba(25, 25, 25, 0.25); /* Dark transparent background */
-  backdrop-filter: blur(300px);
-  -webkit-backdrop-filter: blur(12px);
-
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* =====================================
@@ -129,7 +125,8 @@ const toggleSidenav = () => {
 
 /* Default desktop button styling */
 .registration-desktop button {
-  all: unset; /* remove default button styles */
+  all: unset;
+  /* remove default button styles */
   cursor: pointer;
   border-radius: 0.8rem;
   padding: 0.5rem 0.5rem;
@@ -160,12 +157,13 @@ const toggleSidenav = () => {
     MOBILE STYLING (<=768px)
    ================================ */
 @media (max-width: 768px) {
+
   /* Hide the desktop registration button */
   .registration-desktop {
     display: none;
   }
 
-  /* Turn nav list into a side drawer menu */
+  /* Turn nav list into a side drawer menu */ 
   ul {
     position: fixed;
     top: 0;
@@ -179,8 +177,12 @@ const toggleSidenav = () => {
     align-items: center;
     justify-content: center;
 
-    background-color: #19242d;
-    transform: translateX(-100%); /* hidden by default */
+    backdrop-filter: blur(20px);
+    background: rgba(15, 15, 30, 0.705);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f5f5f5;
+    transform: translateX(-100%);
+    /* hidden by default */
     transition: transform 0.3s ease-in-out;
   }
 
@@ -202,7 +204,8 @@ const toggleSidenav = () => {
     cursor: pointer;
     padding: 0;
     color: white;
-    z-index: 1003; /* stays above sidenav */
+    z-index: 1003;
+    /* stays above sidenav */
   }
 
   /* The three hamburger lines */
