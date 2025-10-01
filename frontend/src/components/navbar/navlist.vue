@@ -11,8 +11,7 @@ const props = defineProps({
 <template>
   <ul>
     <li v-for="link in links" :key="link.text">
-      <img :src="link.src" />
-      <a :href="link.href">{{ link.text }}</a>
+      <a :href="link.href"><img :src="link.src" />{{ link.text }}</a>
     </li>
   </ul>
 </template>
