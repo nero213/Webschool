@@ -11,13 +11,6 @@ const props = defineProps({
 </script>
 
 <template>
-<<<<<<< HEAD
-  <ul>
-    <li v-for="link in links" :key="link.text">
-      <a :href="link.href"><img :src="link.src" />{{ link.text }}</a>
-    </li>
-  </ul>
-=======
   <div class="navbar">
     <Navbarlogo class="logo" />
     <ul>
@@ -26,7 +19,6 @@ const props = defineProps({
       </li>
     </ul>
   </div>
->>>>>>> 744c5aa (improve the navbar)
 </template>
 
 <style scoped>
