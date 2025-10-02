@@ -1,8 +1,10 @@
 // src/services/lessons.js
 import http from './http'
 
+
 export function getLessons() {
   return http.get('/lessons') // GET
+  
 }
 
 export function createLesson(lesson) {
