@@ -1,6 +1,13 @@
 <script setup>
+// Import Vue's reactive reference feature
+import { ref } from 'vue'
+
+// Import the logo component
 import Navbarlogo from './navbarlogo.vue'
 
+// Define props expected from the parent component
+// - "name" (optional, just identifies this component)
+// - "links" (required) → an array of link objects with { src, href, text }
 const props = defineProps({
   name: 'navlist',
   links: {
@@ -8,66 +15,238 @@ const props = defineProps({
     required: true,
   },
 })
+
+// Reactive state variable that tracks whether the side navigation is open (mobile)
+const isMenuOpen = ref(false)
+const isOpen = ref(false)
+
+// Function to toggle the sidenav on and off (for small screens)
+const toggleSidenav = () => {
+  isMenuOpen.value = !isMenuOpen.value
+  isOpen.value = !isOpen.value
+  // console.log(isMenuOpen.value) // for debugging
+}
 </script>
 
 <template>
   <div class="navbar">
-    <Navbarlogo class="logo" />
-    <ul>
+    <!--  Logo Section -->
+    <Navbarlogo />
+
+    <!--  Hamburger Menu Button (visible only on small screens) -->
+    <button class="hamburger" :class="{ open: isOpen }" @click="toggleSidenav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!--  Navigation Links (turns into a side menu on mobile) -->
+    <ul :class="{ 'sidenav-active': isMenuOpen }">
+      <!-- Render each navigation link dynamically -->
       <li v-for="link in links" :key="link.text">
-        <a :href="link.href"><img :src="link.src" />{{ link.text }}</a>
+        <a :href="link.href">
+          <img :src="link.src" />
+          {{ link.text }}
+        </a>
       </li>
+
+      <!--  Extra Buttons (visible only on mobile) -->
+      <div class="registration-mobile">
+        <button><a href="#testing">log in</a></button>
+        <button><a href="#testing">log in</a></button>
+      </div>
     </ul>
+
+    <!-- Extra Button (visible only on desktop) -->
+    <div class="registration-desktop">
+      <button><a href="#testing">Get started</a></button>
+    </div>
   </div>
 </template>
 
 <style scoped>
+/* ================================
+    NAVBAR STYLING (DESKTOP VIEW)
+   ================================ */
 .navbar {
   display: flex;
-  background-color: #064e3b; /* dark green */
-  padding: 10px 20px;
   align-items: center;
-  justify-content: center;
-  height: 13vh;
+  justify-content: space-between;
+  padding: 1vh 20px;
+
+  /* Glassmorphism effect */
+  background-color: rgba(25, 25, 25, 0.25); /* Dark transparent background */
+  backdrop-filter: blur(300px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
-.logo {
-  margin-right: 2px;
-}
+
+/* =====================================
+   NAVIGATION LINKS (DESKTOP LAYOUT)
+   ===================================== */
 .navbar ul {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 15px;
+  justify-content: center;
+  gap: 2rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.navbar li {
-  display: flex;
-}
-
+/* Each link style */
 .navbar a {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 0; /* remove button-like padding */
-  color: #d5fded; /* keep green text */
+  color: #d5fded;
   text-decoration: none;
   font-weight: bold;
-  background: none !important; /* force no background */
-  border-radius: 0; /* no rounded corners */
-  transition: all 0.2s ease-in-out;
+  padding: 0;
+  transition: all 0.4s ease;
 }
 
-.navbar a:hover {
-  color: #34d399; /* just change text color on hover */
-  background: none; /* no background */
+/* Hover animation for links */
+.navbar ul a:hover {
+  color: rgba(255, 255, 255, 0.618);
   transform: scale(1.08);
 }
 
+/* Adjusts the size of link images/icons */
 .navbar img {
   height: 20px;
-  color: #064e3b;
+}
+
+/* =====================================
+    DESKTOP REGISTRATION BUTTON
+   ===================================== */
+.registration-desktop {
+  display: flex;
+  gap: 8px;
+}
+
+/* Default desktop button styling */
+.registration-desktop button {
+  all: unset; /* remove default button styles */
+  cursor: pointer;
+  border-radius: 0.8rem;
+  padding: 0.5rem 0.5rem;
+  transition: all 0.3s ease-in-out;
+
+  /* Transparent button style effects  */
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hover effect for desktop buttons */
+.registration-desktop button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow:
+    inset 0 0 10px rgba(0, 0, 0, 0.1),
+    0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Hide mobile-only elements by default */
+.registration-mobile,
+.hamburger {
+  display: none;
+}
+
+/* ================================
+    MOBILE STYLING (<=768px)
+   ================================ */
+@media (max-width: 768px) {
+  /* Hide the desktop registration button */
+  .registration-desktop {
+    display: none;
+  }
+
+  /* Turn nav list into a side drawer menu */
+  ul {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 60vw;
+    z-index: 1002;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #19242d;
+    transform: translateX(-100%); /* hidden by default */
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* When active, slide the sidenav into view */
+  ul.sidenav-active {
+    transform: translateX(0);
+    /* Force white background */
+  }
+
+  /* Hamburger icon styling */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 3vh;
+    height: 3vh;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: white;
+    z-index: 1003; /* stays above sidenav */
+  }
+
+  /* The three hamburger lines */
+  .hamburger span {
+    width: 2rem;
+    height: 3px;
+    background-color: azure;
+    border-radius: 10px;
+    /* this is to make a very good animation for the Hamburger menu */
+    transition: all 0.4s ease-in-out;
+  }
+
+  /* ================================
+   this is to make the hamburger to X when clicked 
+   ================================ */
+
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translateY(6px) translateX(6px);
+  }
+
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-9px) translateX(6px);
+  }
+
+  /* Mobile registration buttons (below links) */
+  .registration-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* Mobile button design */
+  .registration-mobile button {
+    all: unset;
+    padding: 10px 20px;
+    background-color: #42a5f5;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+  }
 }
 </style>
