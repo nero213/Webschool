@@ -1,8 +1,8 @@
 import express from "express";
-import { getLessons } from "../controllers/selectlessons.js";
-import { insertlessons } from "../controllers/insertlessons.js";
-import { updateLessons } from "../controllers/updatelessons.js";
-import { deletelessons } from "../controllers/deletelessons.js";
+import { getLessons } from "../controllers/lessonsEnpoints/selectlessons.js";
+import { insertlessons } from "../controllers/lessonsEnpoints/insertlessons.js";
+import { updateLessons } from "../controllers/lessonsEnpoints/updatelessons.js";
+import { deletelessons } from "../controllers/lessonsEnpoints/deletelessons.js";
 
 const router = express.Router();
 

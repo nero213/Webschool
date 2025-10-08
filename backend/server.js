@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import auth from "./routes/auth.js";
 import lessonsRoutes from "./routes/lessons.js";
 // this enables the use of env file to hide sensitive information
 import dotenv from "dotenv";
@@ -9,7 +10,7 @@ import rateLimit from "express-rate-limit";
 // this is to setup the env
 dotenv.config();
 const app = express();
-const PORT = process.env.BACKEND_PORT;
+const PORT = process.env.BACKEND_PORT || 3000;
 
 // CORS or cross origin resource sharing
 // allows you to request from another port
@@ -36,6 +37,7 @@ const limiter = rateLimit({
 
 // Mount routes
 app.use("/api/lessons", limiter, lessonsRoutes);
+app.use("/api/auth", limiter, auth);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
