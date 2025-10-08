@@ -1,4 +1,4 @@
-import pool from "../config/db.js";
+import pool from "../../config/db.js";
 
 export const getLessons = async (req, res) => {
   // this is just to select the data from the database

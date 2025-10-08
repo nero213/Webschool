@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import auth from "./routes/auth.js";
 import lessonsRoutes from "./routes/lessons.js";
 // this enables the use of env file to hide sensitive information
 import dotenv from "dotenv";
@@ -36,6 +37,7 @@ const limiter = rateLimit({
 
 // Mount routes
 app.use("/api/lessons", limiter, lessonsRoutes);
+app.use("/api/auth", limiter, auth);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
