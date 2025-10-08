@@ -29,9 +29,6 @@ const toggleSidenav = () => {
 </script>
 
 <template>
-  <!-- this for overlay -->
-  <div v-if="isMenuOpen" class="sidenav-overlay" @click="toggleSidenav"></div>
-
   <div class="navbar">
     <!--  Logo Section -->
     <Navbarlogo />
@@ -191,17 +188,6 @@ const toggleSidenav = () => {
   ul.sidenav-active {
     transform: translateX(0);
     /* Force white background */
-  }
-
-  .sidenav-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent; /* No dark background */
-    z-index: 1001;
-    cursor: pointer; /* Show it's clickable */
   }
 
   /* Hamburger icon styling */
