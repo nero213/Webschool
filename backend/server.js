@@ -41,6 +41,6 @@ const limiter = rateLimit({
 // Mount routes
 app.use("/api/lessons", limiter, lessonsRoutes);
 
-app.listen(PORT, () => {
+app.listen(PORT, 192.168.1.83, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
