@@ -9,11 +9,7 @@ import rateLimit from "express-rate-limit";
 // this is to setup the env
 dotenv.config();
 const app = express();
-<<<<<<< HEAD
 const PORT = process.env.BACKEND_PORT || 3000;
-=======
-const PORT = process.env.BACKEND_PORT;
->>>>>>> ff0b0f9 (added delete to complete the crud)
 
 // CORS or cross origin resource sharing
 // allows you to request from another port
@@ -41,6 +37,6 @@ const limiter = rateLimit({
 // Mount routes
 app.use("/api/lessons", limiter, lessonsRoutes);
 
-app.listen(PORT, 192.168.1.83, () => {
+app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
