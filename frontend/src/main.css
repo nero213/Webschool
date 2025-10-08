@@ -2,3 +2,7 @@
   box-sizing: border-box;
   margin: 0;
 }
+body {
+  /* this is Charcoal black */
+  background-color: #121212;
+}
