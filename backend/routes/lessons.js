@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post("/", insertlessons);
 router.get("/", getLessons);
-router.put("/:id", updateLessons);
-router.delete("/:id", deletelessons);
+router.put("/:uuid", updateLessons);
+router.delete("/:uuid", deletelessons);
 
 export default router;

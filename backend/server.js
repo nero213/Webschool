@@ -39,6 +39,8 @@ const limiter = rateLimit({
 app.use("/api/lessons", limiter, lessonsRoutes);
 app.use("/api/auth", limiter, auth);
 
+console.log(process.env.NODE_ENV); // "development"
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

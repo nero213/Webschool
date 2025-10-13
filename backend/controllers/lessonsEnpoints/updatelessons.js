@@ -2,12 +2,8 @@ import pool from "../../config/db.js";
 
 export const updateLessons = async (req, res) => {
   try {
-    const id = Number(req.params.id);
+    const { uuid } = req.params;
     const { title, language, content } = req.body;
-    
-    if (isNaN(id)) {
-      return res.status(400).json({ message: "invalid number " });
-    }
 
     if (
       typeof title !== "string" ||
@@ -17,9 +13,9 @@ export const updateLessons = async (req, res) => {
       return res.status(400).json({ message: "invalid" });
     }
 
-    const [result] = await pool.query(
-      "UPDATE lessons SET title = ?, language = ?, content = ? WHERE id = ? ",
-      [title, language, content, id]
+    const [result] = await pool.execute(
+      "UPDATE lessons SET title = ?, language = ?, content = ? WHERE uuid = ? ",
+      [title, language, content, uuid]
     );
 
     if (result.affectedRows === 0) {
