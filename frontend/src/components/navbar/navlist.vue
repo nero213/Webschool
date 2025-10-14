@@ -69,14 +69,21 @@ const toggleSidenav = () => {
     NAVBAR STYLING (DESKTOP VIEW)
    ================================ */
 .navbar {
+  position: sticky;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1vh 20px;
 
-  backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background: rgba(25, 25, 35, 0.678);
+  /* semi-transparent dark tone */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.137);
+
+
+
 }
 
 /* =====================================
@@ -133,18 +140,13 @@ const toggleSidenav = () => {
   transition: all 0.3s ease-in-out;
 
   /* Transparent button style effects  */
-  background-color: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(90deg, #007bff, #00b3ff);
 }
 
 /* Hover effect for desktop buttons */
 .registration-desktop button:hover {
-  background-color: rgba(255, 255, 255, 0.4);
-  box-shadow:
-    inset 0 0 10px rgba(0, 0, 0, 0.1),
-    0 4px 10px rgba(0, 0, 0, 0.2);
-  transform: translateY(-1px);
+  transform: scale(1.05);
+  transition: 0.2s ease;
 }
 
 /* Hide mobile-only elements by default */
@@ -177,12 +179,15 @@ const toggleSidenav = () => {
     align-items: center;
     justify-content: center;
 
-    backdrop-filter: blur(20px);
-    background: rgba(15, 15, 30, 0.705);
+    /* Glassmorphism setup */
+    background: rgb(15, 15, 30);
+    /* darker opaque */
+    backdrop-filter: none;
+
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     color: #f5f5f5;
+
     transform: translateX(-100%);
-    /* hidden by default */
     transition: transform 0.3s ease-in-out;
   }
 
@@ -246,7 +251,7 @@ const toggleSidenav = () => {
   .registration-mobile button {
     all: unset;
     padding: 10px 20px;
-    background-color: #42a5f5;
+    background: linear-gradient(90deg, #007bff, #00b3ff);
     color: white;
     border-radius: 5px;
     text-align: center;
