@@ -13,6 +13,7 @@ onMounted(async () => {
   try {
     const res = await getLessons()
     lessons.value = res.data
+    console.log(lessons.value)
   } catch (err) {
     console.error('There is a problem with the backend API', err)
   }
