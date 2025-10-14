@@ -23,17 +23,15 @@ export const register = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // 🧩 4. Insert the new user
     const [result] = await pool.query(
       "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
       [username, email, hashedPassword]
     );
 
     if (result.affectedRows > 0) {
-       return res.status(400).json({ message: "Something went wrong " });
+      return res.status(400).json({ message: "Something went wrong " });
     }
 
-    // 🧩 5. Respond with success
     res.status(201).json({
       message: "User registered successfully",
       userId: result.insertId,
