@@ -1,16 +1,13 @@
 <script setup>
-import HeroApp from './components/heroSection/heroApp.vue';
+import HeroSection from './components/heroSection/heroSection.vue'
 import navbar_app from './components/navbar/navbar_app.vue'
-
 </script>
 
 <template>
   <navbar_app class="sidenav" />
   <!-- <SeeLessons /> -->
-  <HeroApp class="herosection" />
-
+  <HeroSection class="herosection" />
 </template>
-
 
 <style>
 .sidenav {

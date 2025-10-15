@@ -81,9 +81,6 @@ const toggleSidenav = () => {
   background: rgba(25, 25, 35, 0.678);
   /* semi-transparent dark tone */
   border-bottom: 1px solid rgba(255, 255, 255, 0.137);
-
-
-
 }
 
 /* =====================================
@@ -159,7 +156,6 @@ const toggleSidenav = () => {
     MOBILE STYLING (<=768px)
    ================================ */
 @media (max-width: 768px) {
-
   /* Hide the desktop registration button */
   .registration-desktop {
     display: none;
@@ -179,11 +175,8 @@ const toggleSidenav = () => {
     align-items: center;
     justify-content: center;
 
-    /* Glassmorphism setup */
     background: rgb(15, 15, 30);
-    /* darker opaque */
     backdrop-filter: none;
-
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     color: #f5f5f5;
 

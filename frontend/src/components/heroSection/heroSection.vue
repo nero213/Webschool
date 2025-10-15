@@ -14,12 +14,12 @@ let typedInstance = null
 onMounted(() => {
     typedInstance = new typed(typedTarget.value, {
         strings: [
-            'Learn to code, Build your future.',
-            'Code smarter, Create more.',
+            'Learn to code. Build your future.',
+            'Code smarter. Create more.',
             'Turn your ideas into web projects.'
         ],
         typeSpeed: 60,
-        backSpeed: 30,
+        backSpeed: 40,
         backDelay: 1000,
         loop: true,
         showCursor: true,
@@ -145,12 +145,12 @@ onUnmounted(() => {
     }
 
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 3rem;
         line-height: 1.3;
     }
 
     .hero-content p {
-        font-size: 1rem;
+        font-size: 1.2rem;
         margin-bottom: 1.5rem;
     }
 
