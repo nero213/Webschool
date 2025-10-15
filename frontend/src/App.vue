@@ -1,28 +1,20 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-const lessons_api = import.meta.env.VITE_BASE_LESSONS_API
-
-const lessons = ref([])
-
-onMounted(async () => {
-  try {
-    const response = await fetch(lessons_api)
-    lessons.value = await response.json()
-  } catch (err) {
-    console.error('there is a problem with the backend api')
-  }
-})
+import HeroSection from './components/heroSection/heroSection.vue'
+import navbar_app from './components/navbar/navbar_app.vue'
 </script>
 
 <template>
-  <div>
-    <h1>Lessons</h1>
-    <ul>
-      <li v-for="lesson in lessons" :key="lesson.id">
-        {{ lesson.title }}
-      </li>
-    </ul>
-  </div>
+  <navbar_app class="sidenav" />
+  <!-- <SeeLessons /> -->
+  <HeroSection class="herosection" />
 </template>
 
-<style></style>
+<style>
+.sidenav {
+  z-index: 2;
+}
+
+.herosection {
+  z-index: 1;
+}
+</style>

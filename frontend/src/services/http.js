@@ -1,0 +1,11 @@
+import axios from 'axios'
+import fs from 'fs'
+
+const http = axios.create({
+  baseURL: 'http://192.168.1.83:3000/api/',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+
+export default http

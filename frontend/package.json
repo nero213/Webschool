@@ -13,6 +13,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@neeravp/vue-3-animate-in-view": "^1.0.2",
+    "axios": "^1.12.2",
+    "typed.js": "^2.1.0",
     "vue": "^3.5.18"
   },
   "devDependencies": {
